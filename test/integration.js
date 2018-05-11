@@ -36,8 +36,8 @@ describe('basic holepunch', () => {
     debug('sock 1 on', hp1.whoami())
     debug('sock 2 on', hp2.whoami())
 
-    hp2.on('punched', () => {
-      hp2.punch(hp1.whoami())
+    hp2.on('punched', (other) => {
+      hp2.punch(other)
     })
 
     hp1.on('punched', () => {

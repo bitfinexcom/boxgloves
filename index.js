@@ -21,9 +21,13 @@ class Holepuncher extends Events {
     }
   }
 
+  isHolepunch (msg) {
+    return msg.equals(this.opts.controlBuf)
+  }
+
   register () {
     this.socket.on('message', (msg, rinfo) => {
-      if (!msg.equals(this.opts.controlBuf)) return
+      if (!this.isHolepunch(msg)) return
 
       debug('received control char ', this.opts.controlBuf, ' for punching from', rinfo)
       this.emit('punched', rinfo)
